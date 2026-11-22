@@ -26,14 +26,14 @@ export const Navbar: React.FC = () => {
           {/* Brand Logo & National Scope */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="flex items-center space-x-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:shadow-emerald-200 transition-all">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 via-indigo-800 to-slate-900 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:shadow-blue-200 transition-all">
                 Q0
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg text-slate-900 leading-tight tracking-tight">
                   Queue-Zero
                 </span>
-                <span className="text-[11px] font-semibold text-emerald-700 tracking-wide uppercase">
+                <span className="text-[11px] font-semibold text-blue-700 tracking-wide uppercase">
                   Smart Banking &bull; Nigeria
                 </span>
               </div>
@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
                   to={link.path}
                   className={`inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     active
-                      ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                      ? 'bg-blue-50 text-blue-800 font-semibold border-b-2 border-blue-600'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
@@ -61,14 +61,15 @@ export const Navbar: React.FC = () => {
               );
             })}
 
-            {/* Simple Mode Switch Button */}
+            {/* Simple Mode Switch Button with English first and Yoruba translation */}
             <Link
               to="/simple-mode"
-              className="ml-2 inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition-colors shadow-xs"
-              title="Accessible view with larger text and simplified assistance"
+              className="ml-2 inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200 transition-colors shadow-xs"
+              title="Accessible view: English first with Yoruba assistance"
             >
               <span className="w-2 h-2 rounded-full bg-amber-500 mr-1.5 animate-ping"></span>
-              Simple Mode (Easy Access)
+              <span>Simple Mode</span>
+              <span className="ml-1 text-[11px] font-medium text-amber-800 italic">(Ètò Rọrùn)</span>
             </Link>
           </div>
 
@@ -76,14 +77,14 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center md:hidden">
             <Link
               to="/simple-mode"
-              className="mr-2 inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300"
+              className="mr-2 inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-950 border border-amber-300"
             >
-              Simple Mode
+              Simple Mode <span className="text-[10px] ml-0.5 text-amber-800">(Rọrùn)</span>
             </Link>
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -106,11 +107,11 @@ export const Navbar: React.FC = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium ${
                   active
-                    ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                    ? 'bg-blue-50 text-blue-800 font-semibold'
                     : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
-                <Icon className="w-5 h-5 mr-3 text-emerald-600" />
+                <Icon className="w-5 h-5 mr-3 text-blue-600" />
                 {link.label}
               </Link>
             );
