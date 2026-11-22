@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Clock, MapPin, Ticket, ShieldAlert, Sparkles } from 'lucide-react';
+import { Menu, X, Clock, Building2, Ticket, ShieldAlert, Sparkles } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Home', path: '/', icon: Clock },
-    { label: 'Find Branch', path: '/branches', icon: MapPin },
+    { label: 'Bank Branches', path: '/branches', icon: Building2 },
     { label: 'Services & Prep', path: '/services', icon: Sparkles },
     { label: 'My Ticket', path: '/ticket', icon: Ticket },
     { label: 'Staff Portal', path: '/staff', icon: ShieldAlert },
@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Brand Logo & Target Market */}
+          {/* Brand Logo & National Scope */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="flex items-center space-x-2.5 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:shadow-emerald-200 transition-all">
@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
                   Queue-Zero
                 </span>
                 <span className="text-[11px] font-semibold text-emerald-700 tracking-wide uppercase">
-                  Ibadan &bull; Smart Banking
+                  Smart Banking &bull; Nigeria
                 </span>
               </div>
             </Link>

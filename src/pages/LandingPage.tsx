@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Clock, 
-  MapPin, 
+  Building2, 
   CheckCircle2, 
   ArrowRight, 
   Users, 
@@ -16,57 +16,54 @@ import {
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
-  const ibadanAreas = [
-    'Dugbe (Commercial Hub)', 
-    'Bodija (Market & Res.)', 
-    'Challenge', 
-    'Sango', 
-    'Iwo Road', 
-    'Ring Road'
+  // Sample Bank Branches representing initial demonstration hubs
+  const sampleBankBranches = [
+    { bank: 'First Bank', branch: 'Dugbe Commercial Branch', type: 'Main Commercial Hub' },
+    { bank: 'GTBank', branch: 'Bodija Market Branch', type: 'Retail & Market Hub' },
+    { bank: 'Zenith Bank', branch: 'Challenge Branch', type: 'Transit Hub' },
+    { bank: 'Access Bank', branch: 'Ring Road Branch', type: 'Business District' },
+    { bank: 'UBA', branch: 'Sango / UI Branch', type: 'Student & Academic Axis' },
+    { bank: 'Stanbic IBTC', branch: 'Iwo Road Branch', type: 'Commercial Interchange' }
   ];
 
   const targetUsers = [
     {
       title: 'Traders & Small Businesses',
-      location: 'Dugbe, Bodija & Gbagi Markets',
-      desc: 'Cannot afford to abandon their stalls for 3 to 4 hours in a crowded banking hall just to resolve a POS dispute or cash issue.',
+      location: 'Markets & Commercial Hubs Nationwide',
+      desc: 'Cannot afford to abandon their shops or stalls for 3 to 4 hours in a crowded banking hall just to resolve a POS dispute, cash issue, or change request.',
       icon: Store,
-      badgeColor: 'bg-amber-100 text-amber-800 border-amber-200'
     },
     {
-      title: 'Elderly Customers',
-      location: 'Pensioners & Seniors across Oyo State',
-      desc: 'Standing for long hours is physically painful. Need larger text, simpler steps, Yoruba language options, and assisted booking by family.',
+      title: 'Elderly Customers & Pensioners',
+      location: 'Senior Citizens Across Nigeria',
+      desc: 'Standing for hours in humid queues is physically exhausting. They need larger text, fewer steps, bilingual guidance, and assisted booking by family members.',
       icon: HeartHandshake,
-      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200'
     },
     {
       title: 'Students & Young Adults',
-      location: 'UI, Poly Ibadan, Lead City',
-      desc: 'Need to collect new ATM cards or verify student bank accounts between tight lecture schedules without guessing wait times.',
+      location: 'Campuses & Higher Institutions',
+      desc: 'Need to collect new debit cards, update account details, or verify student accounts between tight lecture schedules without guessing wait times.',
       icon: GraduationCap,
-      badgeColor: 'bg-blue-100 text-blue-800 border-blue-200'
     },
     {
-      title: 'Busy Professionals',
-      location: 'Secretariat, Commercial Banks & Offices',
-      desc: 'Need predictable branch visits during lunch breaks or before work starts, knowing exactly when their ticket will be called.',
+      title: 'Busy Working Professionals',
+      location: 'Corporate Offices & Public Sector',
+      desc: 'Need predictable branch visits during lunch breaks or early mornings, knowing their queue status before walking through the security doors.',
       icon: Briefcase,
-      badgeColor: 'bg-purple-100 text-purple-800 border-purple-200'
     }
   ];
 
   const journeySteps = [
     {
       step: '01',
-      title: 'Choose Bank & Branch',
-      desc: 'Select a sample bank in Ibadan (e.g. Dugbe Commercial or Bodija Market branch) and view live simulated queue capacity.',
+      title: 'Select Bank & Branch',
+      desc: 'Choose a participating sample bank and branch near you and view simulated live customer volume before leaving your location.',
       link: '/branches'
     },
     {
       step: '02',
       title: 'Check Required Documents',
-      desc: 'Avoid wasted trips. See exactly what you need before travelling (NIN, utility bill, passport photo, or reference form).',
+      desc: 'Avoid wasted trips. See exactly what you need before travelling (NIN, valid ID, utility bill, or passport photos).',
       link: '/services'
     },
     {
@@ -78,7 +75,7 @@ export const LandingPage: React.FC = () => {
     {
       step: '04',
       title: 'Arrive Right on Time',
-      desc: 'Monitor your place in line. Walk into the banking hall right when your number is approaching the counter.',
+      desc: 'Monitor your place in line. Walk into the banking hall right when your number is approaching the teller counter.',
       link: '/ticket'
     }
   ];
@@ -88,18 +85,19 @@ export const LandingPage: React.FC = () => {
       {/* 1. HERO SECTION */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-emerald-900 via-emerald-800 to-slate-900 text-white p-6 sm:p-12 lg:p-16 shadow-xl border border-emerald-700/40">
         <div className="relative z-10 max-w-3xl">
-          {/* Location Badge */}
+          {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-800/80 border border-emerald-600/50 text-xs sm:text-sm font-medium text-emerald-200 mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Focus Area: Ibadan, Oyo State, Nigeria</span>
+            <span>Smart Queue Management &bull; Nigerian Banking Platform</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-6">
-            Skip the Banking Hall Rush in <span className="text-emerald-400 underline decoration-emerald-500/50">Ibadan</span>.
+            Skip the Banking Hall Rush Across <span className="text-emerald-400 underline decoration-emerald-500/50">Nigeria</span>.
           </h1>
 
           <p className="text-base sm:text-xl text-emerald-100/90 leading-relaxed font-normal mb-8 max-w-2xl">
-            Queue-Zero (Q0) is a smart customer assistance platform. Join a virtual banking queue before leaving home, check required documents in advance, and walk in right when your turn arrives.
+            Queue-Zero (Q0) is a customer assistance platform designed to end long standing hours in Nigerian banking halls. 
+            Join a virtual line before you travel, confirm required documents in advance, and walk in right when your turn arrives.
           </p>
 
           {/* Action Buttons */}
@@ -108,7 +106,7 @@ export const LandingPage: React.FC = () => {
               to="/branches"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-slate-900 bg-emerald-400 hover:bg-emerald-300 transition-all shadow-lg hover:shadow-emerald-400/20 text-sm sm:text-base group"
             >
-              <span>Explore Sample Branches</span>
+              <span>Explore Sample Bank Branches</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
 
@@ -128,18 +126,19 @@ export const LandingPage: React.FC = () => {
             </Link>
           </div>
 
-          {/* Focus Areas Ticker */}
+          {/* Sample Bank Branches Ticker */}
           <div className="pt-6 border-t border-emerald-700/50">
-            <p className="text-xs uppercase tracking-wider text-emerald-300/80 font-semibold mb-2.5">
-              Target Neighborhoods in Prototype Scope:
+            <p className="text-xs uppercase tracking-wider text-emerald-300/80 font-semibold mb-2.5 flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Sample Bank Branches in Prototype Scope:</span>
             </p>
             <div className="flex flex-wrap gap-2">
-              {ibadanAreas.map((area) => (
+              {sampleBankBranches.map((item) => (
                 <span
-                  key={area}
-                  className="px-2.5 py-1 rounded-md bg-emerald-800/60 text-xs text-emerald-200 border border-emerald-700/40"
+                  key={item.branch}
+                  className="px-2.5 py-1 rounded-md bg-emerald-800/60 text-xs text-emerald-200 border border-emerald-700/40 flex items-center gap-1.5"
                 >
-                  {area}
+                  <strong className="text-white">{item.bank}:</strong> {item.branch}
                 </span>
               ))}
             </div>
@@ -150,17 +149,17 @@ export const LandingPage: React.FC = () => {
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
       </section>
 
-      {/* 2. THE PROBLEM WE ARE EXPLORING */}
+      {/* 2. THE PROBLEM WE ARE SOLVING */}
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-            The Ibadan Banking Challenge
+            The Nigerian Banking Challenge
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-            Why Do Banking Halls Get So Congested?
+            Why Are Nigerian Banking Halls Always Crowded?
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Based on preliminary observations and research across bank branches in Oyo State:
+            A universal reality experienced by everyday customers across bank branches nationwide:
           </p>
         </div>
 
@@ -171,7 +170,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <h3 className="font-bold text-slate-900 text-lg">Hours of Unpredictable Waiting</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Customers often arrive at 8:00 AM, take a paper slip, and sit for 2 to 4 hours in crowded waiting halls without knowing when they will be served.
+              Customers queue outside security doors as early as 7:30 AM, pick paper slips, and sit through hours of slow lines without knowing their true expected service time.
             </p>
           </div>
 
@@ -181,7 +180,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <h3 className="font-bold text-slate-900 text-lg">Missing Document Frustration</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              After waiting for hours, customers frequently learn at the counter that their utility bill or ID is invalid, turning a whole morning into a wasted trip.
+              After waiting for hours, customers frequently discover at the teller counter that their utility bill or ID does not meet requirements, wasting transport money and productive hours.
             </p>
           </div>
 
@@ -191,13 +190,13 @@ export const LandingPage: React.FC = () => {
             </div>
             <h3 className="font-bold text-slate-900 text-lg">Elderly & Walk-in Barriers</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Older customers and residents who are less comfortable with digital banking apps are left stranded unless a simple, assisted pathway is built for them.
+              Seniors, pensioners, and traders who are uncomfortable with mobile banking apps struggle in fast-paced halls without dedicated simple or assisted booking options.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 3. WHO Q0 HELPS (PERSONAS) */}
+      {/* 3. WHO Q0 HELPS (PERSONAS ACROSS NIGERIA) */}
       <section className="bg-slate-100/70 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 rounded-3xl border border-slate-200">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="max-w-2xl space-y-2">
@@ -205,10 +204,10 @@ export const LandingPage: React.FC = () => {
               User-Centred Design
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Designed for Real People in Ibadan
+              Built for Real Everyday Bank Customers
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
-              Every feature in the Q0 prototype is mapped directly to the daily routine of local banking customers:
+              Designed around the daily routines and common frustrations of people visiting Nigerian bank branches:
             </p>
           </div>
 
@@ -304,7 +303,7 @@ export const LandingPage: React.FC = () => {
 
           <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-amber-200 shadow-sm text-center space-y-3">
             <div className="text-amber-600 font-bold text-xs uppercase tracking-wider">
-              Yoruba Language Preview
+              Bilingual Assistance Preview
             </div>
             <p className="text-lg font-bold text-slate-900">
               &ldquo;Ẹ káàbọ̀ sí Queue-Zero. Yan ẹ̀ka bánkì rẹ kí o sì gba nọ́mbà ìdúró rẹ láì fi àkókò ṣòfò.&rdquo;
@@ -325,7 +324,7 @@ export const LandingPage: React.FC = () => {
               <span>Demonstration Prototype Guardrails</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Transparent design standards for research, evaluation, and safe testing.
+              Transparent design standards for research, evaluation, and safe testing across Nigerian banks.
             </p>
           </div>
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 self-start sm:self-auto">
@@ -360,7 +359,7 @@ export const LandingPage: React.FC = () => {
               <span>Bank Partnership Ready</span>
             </h4>
             <p className="text-slate-600 leading-relaxed text-xs">
-              Designed as a proposal ready for presentation to branch managers and banking operations executives across Oyo State.
+              Designed as a professional proposal ready for presentation to Nigerian commercial banks and branch operations leadership.
             </p>
           </div>
         </div>
@@ -376,12 +375,12 @@ export const LandingPage: React.FC = () => {
           >
             <div className="flex items-center justify-between mb-2">
               <span className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                1. Find an Ibadan Branch
+                1. Select a Bank Branch
               </span>
-              <MapPin className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
+              <Building2 className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Explore sample branches in Dugbe, Bodija, Challenge, and Sango with simulated wait times.
+              Explore sample branches (First Bank, GTBank, Zenith, Access, UBA) with simulated live wait times.
             </p>
           </Link>
 
@@ -396,7 +395,7 @@ export const LandingPage: React.FC = () => {
               <FileText className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Review document requirements for ATM card replacement, account reactivation, and inquiries.
+              Review document requirements for debit card replacement, account reactivation, and inquiries.
             </p>
           </Link>
 

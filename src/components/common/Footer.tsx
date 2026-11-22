@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, MapPin, Heart } from 'lucide-react';
+import { ShieldCheck, Building2, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -16,11 +16,11 @@ export const Footer: React.FC = () => {
               <span className="font-bold text-white text-base">Queue-Zero (Q0)</span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              A community-centred smart queue management and customer assistance prototype designed to reduce congestion and waiting times across banking halls in Ibadan, Oyo State.
+              A smart banking queue management and customer assistance prototype designed to eliminate long queues, hall congestion, and avoidable delays across bank branches throughout Nigeria.
             </p>
             <div className="flex items-center gap-1.5 text-xs text-emerald-400 pt-1">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>Initial Study Hub: Ibadan (Dugbe, Bodija, Challenge, Sango, Iwo Rd)</span>
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Pilot Scope: Sample Commercial Bank Branches (Commercial & Retail Hubs)</span>
             </div>
           </div>
 
@@ -34,16 +34,16 @@ export const Footer: React.FC = () => {
                 <Link to="/" className="hover:text-emerald-400 transition-colors">Home & Overview</Link>
               </li>
               <li>
-                <Link to="/branches" className="hover:text-emerald-400 transition-colors">Ibadan Branches</Link>
+                <Link to="/branches" className="hover:text-emerald-400 transition-colors">Sample Bank Branches</Link>
               </li>
               <li>
                 <Link to="/services" className="hover:text-emerald-400 transition-colors">Service Prep Checklist</Link>
               </li>
               <li>
-                <Link to="/simple-mode" className="hover:text-emerald-400 transition-colors">Simple Mode (Elderly)</Link>
+                <Link to="/simple-mode" className="hover:text-emerald-400 transition-colors">Simple Mode (Elderly & Assisted)</Link>
               </li>
               <li>
-                <Link to="/staff" className="hover:text-emerald-400 transition-colors">Staff Demo Dashboard</Link>
+                <Link to="/staff" className="hover:text-emerald-400 transition-colors">Staff Teller Console</Link>
               </li>
             </ul>
           </div>
@@ -55,18 +55,18 @@ export const Footer: React.FC = () => {
               Security Notice
             </h4>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Queue-Zero is a <strong>research prototype</strong>. It uses simulated queues and sample branch data.
-              It does not connect to bank accounts and will <strong>never</strong> ask for BVN, passwords, or ATM PINs.
+              Queue-Zero is a <strong>research prototype</strong>. It uses simulated queues and sample bank data.
+              It does not connect to live banking ledgers and will <strong>never</strong> ask for BVN, passwords, OTPs, or ATM PINs.
             </p>
           </div>
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <p className="text-slate-500">
-            &copy; {new Date().getFullYear()} Queue-Zero (Q0) &bull; Prototype for Ibadan Banking Discovery.
+            &copy; {new Date().getFullYear()} Queue-Zero (Q0) &bull; Built for Nigerian Bank Customers & Branch Operations.
           </p>
           <div className="flex items-center gap-1 text-slate-500">
-            <span>Built with care for Nigerian Bank Customers</span>
+            <span>Built for Nigerian Banking Efficiency</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 inline fill-rose-500 ml-1" />
           </div>
         </div>

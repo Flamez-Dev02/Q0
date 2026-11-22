@@ -8,8 +8,8 @@ export const DemoBanner: React.FC = () => {
         <div className="flex items-center gap-2">
           <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
           <span>
-            <strong>Demonstration Prototype:</strong> Using sample branches and simulated queue activity for Ibadan, Oyo State.
-            Never enter BVN, ATM PINs, OTPs, or financial secrets.
+            <strong>Demonstration Prototype:</strong> Simulated queue system for Nigerian bank branches. 
+            Never enter BVN, ATM PINs, OTPs, or banking passwords.
           </span>
         </div>
         <span className="hidden md:inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-amber-200 text-amber-800">
