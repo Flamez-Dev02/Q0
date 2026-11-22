@@ -61,15 +61,15 @@ export const Navbar: React.FC = () => {
               );
             })}
 
-            {/* Simple Mode Switch Button with English first and Yoruba translation */}
+            {/* Simple Mode Switch Button */}
             <Link
               to="/simple-mode"
               className="ml-2 inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300 hover:bg-amber-200 transition-colors shadow-xs"
-              title="Accessible view: English first with Yoruba assistance"
+              title="Accessible view with larger text and easy navigation"
             >
               <span className="w-2 h-2 rounded-full bg-amber-500 mr-1.5 animate-ping"></span>
               <span>Simple Mode</span>
-              <span className="ml-1 text-[11px] font-medium text-amber-800 italic">(Ètò Rọrùn)</span>
+              <span className="ml-1 text-[11px] font-medium text-amber-800">(Easy Access)</span>
             </Link>
           </div>
 
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
               to="/simple-mode"
               className="mr-2 inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-950 border border-amber-300"
             >
-              Simple Mode <span className="text-[10px] ml-0.5 text-amber-800">(Rọrùn)</span>
+              Simple Mode
             </Link>
             <button
               type="button"

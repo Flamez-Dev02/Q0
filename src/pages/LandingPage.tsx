@@ -29,28 +29,28 @@ export const LandingPage: React.FC = () => {
   const targetUsers = [
     {
       title: 'Traders & Small Businesses',
-      translation: '(Àwọn Oníṣòwò & Oníṣẹ́-Ọwọ́)',
-      location: 'Markets & Commercial Hubs Nationwide',
+      subtitle: 'Market Vendors & Business Owners',
+      location: 'Commercial Hubs Nationwide',
       desc: 'Cannot afford to abandon their shops or stalls for 3 to 4 hours in a crowded banking hall just to resolve a POS dispute, cash issue, or change request.',
       icon: Store,
     },
     {
       title: 'Elderly Customers & Pensioners',
-      translation: '(Àwọn Àgbàlagbà & Awon Afẹ̀yìntì)',
+      subtitle: 'Senior Citizens & Retirees',
       location: 'Senior Citizens Across Nigeria',
       desc: 'Standing for hours in humid queues is physically exhausting. They need larger text, fewer steps, clear assistance, and assisted booking by family members.',
       icon: HeartHandshake,
     },
     {
       title: 'Students & Young Adults',
-      translation: '(Àwọn Akẹ́kọ̀ọ́ & Ọ̀dọ́)',
+      subtitle: 'Undergraduates & Youth Corps Members',
       location: 'Campuses & Higher Institutions',
       desc: 'Need to collect new debit cards, update account details, or verify student accounts between tight lecture schedules without guessing wait times.',
       icon: GraduationCap,
     },
     {
       title: 'Busy Working Professionals',
-      translation: '(Àwọn Òṣìṣẹ́ Ilé-Iṣẹ́)',
+      subtitle: 'Office Workers & Public Servants',
       location: 'Corporate Offices & Public Sector',
       desc: 'Need predictable branch visits during lunch breaks or early mornings, knowing their queue status before walking through the security doors.',
       icon: Briefcase,
@@ -61,28 +61,28 @@ export const LandingPage: React.FC = () => {
     {
       step: '01',
       title: 'Select Bank & Branch',
-      translation: 'Yan ẹ̀ka bánkì rẹ',
+      subtitle: 'Choose your nearby branch',
       desc: 'Choose a participating sample bank and branch near you and view simulated live customer volume before leaving your location.',
       link: '/branches'
     },
     {
       step: '02',
       title: 'Check Required Documents',
-      translation: 'Ṣàyẹ̀wò àwọn ìwé tí o nílò',
+      subtitle: 'Confirm documents before you travel',
       desc: 'Avoid wasted trips. See exactly what you need before travelling (NIN, valid ID, utility bill, or passport photos).',
       link: '/services'
     },
     {
       step: '03',
       title: 'Receive Virtual Ticket',
-      translation: 'Gba nọ́mbà ìdúró rẹ lórí ẹ̀rọ',
+      subtitle: 'Get your digital queue number',
       desc: 'Join the demo queue from your phone and receive a unique ticket number (e.g., QZ-042) with an estimated waiting time.',
       link: '/branches'
     },
     {
       step: '04',
       title: 'Arrive Right on Time',
-      translation: 'Dé bánkì ní àsìkò tó tọ́',
+      subtitle: 'Walk in when your turn is called',
       desc: 'Monitor your place in line. Walk into the banking hall right when your number is approaching the teller counter.',
       link: '/ticket'
     }
@@ -101,9 +101,6 @@ export const LandingPage: React.FC = () => {
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] mb-6">
             Skip the Banking Hall Rush Across <span className="text-cyan-400 underline decoration-blue-500/50">Nigeria</span>.
-            <span className="block text-sm sm:text-base font-normal text-blue-200/80 italic mt-2">
-              (Dín àkókò ìdúró kù ní àwọn gbọ̀ngàn bánkì káàkiri Nàìjíríà)
-            </span>
           </h1>
 
           <p className="text-base sm:text-xl text-slate-200/90 leading-relaxed font-normal mb-8 max-w-2xl">
@@ -123,11 +120,10 @@ export const LandingPage: React.FC = () => {
 
             <Link
               to="/simple-mode"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 transition-all shadow-md text-sm sm:text-base flex-col sm:flex-row gap-1"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 transition-all shadow-md text-sm sm:text-base"
             >
               <span>Simple Mode (Easy Access)</span>
-              <span className="text-xs font-semibold text-amber-900 italic">(Ètò Rọrùn)</span>
-              <Sparkles className="w-4 h-4 text-amber-900 hidden sm:inline ml-1" />
+              <Sparkles className="w-4 h-4 text-amber-900 ml-1.5" />
             </Link>
 
             <Link
@@ -165,7 +161,7 @@ export const LandingPage: React.FC = () => {
       <section className="space-y-6">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-            The Nigerian Banking Reality &bull; Àwọn Ìṣòro Bánkì
+            The Nigerian Banking Reality
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
             Why Are Banking Halls Always Congested?
@@ -182,7 +178,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h3 className="font-bold text-slate-900 text-lg">Hours of Unpredictable Waiting</h3>
-              <p className="text-xs text-slate-500 italic mt-0.5">(Wákàtí pípẹ́ láì mọ ìgbà tí a ó pè ọ́)</p>
+              <p className="text-xs text-slate-500 font-medium mt-0.5">Crowded halls with slow-moving lines</p>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
               Customers queue outside security doors as early as 7:30 AM, pick paper slips, and sit through hours of slow lines without knowing their true expected service time.
@@ -195,7 +191,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h3 className="font-bold text-slate-900 text-lg">Missing Document Frustration</h3>
-              <p className="text-xs text-slate-500 italic mt-0.5">(Àwọn ìwé tí kò pé nígbà tí o dé iwájú tábìlì)</p>
+              <p className="text-xs text-slate-500 font-medium mt-0.5">Turned away after waiting for hours</p>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
               After waiting for hours, customers frequently discover at the teller counter that their utility bill or ID does not meet requirements, wasting transport money and productive hours.
@@ -208,7 +204,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h3 className="font-bold text-slate-900 text-lg">Elderly & Walk-in Barriers</h3>
-              <p className="text-xs text-slate-500 italic mt-0.5">(Ìṣòro fún àwọn àgbàlagbà àti aláìní fóònù)</p>
+              <p className="text-xs text-slate-500 font-medium mt-0.5">Lack of assistance for non-digital users</p>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed">
               Seniors, pensioners, and traders who are uncomfortable with mobile banking apps struggle in fast-paced halls without dedicated simple or assisted booking options.
@@ -222,7 +218,7 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="max-w-2xl space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700 bg-white px-3 py-1 rounded-full border border-slate-200">
-              User-Centred Design &bull; Àwọn Tí Q0 Wúlò Fún
+              User-Centred Design
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
               Built for Real Everyday Bank Customers
@@ -246,7 +242,7 @@ export const LandingPage: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 text-base">{user.title}</h3>
-                      <p className="text-xs text-blue-700 font-medium italic">{user.translation}</p>
+                      <p className="text-xs text-blue-700 font-medium">{user.subtitle}</p>
                       <p className="text-[11px] text-slate-500 font-semibold mt-0.5">{user.location}</p>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">{user.desc}</p>
@@ -262,7 +258,7 @@ export const LandingPage: React.FC = () => {
       <section className="space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-            Four-Step Process &bull; Ìgbésẹ̀ Mẹ́rin
+            Four-Step Process
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
             How Queue-Zero Solves the Waiting Game
@@ -287,7 +283,7 @@ export const LandingPage: React.FC = () => {
                   <span>{step.title}</span>
                   <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-[11px] text-blue-600 font-medium italic">{step.translation}</p>
+                <p className="text-[11px] text-blue-600 font-medium">{step.subtitle}</p>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
             </Link>
@@ -300,19 +296,19 @@ export const LandingPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-200 text-amber-950 text-xs font-bold">
-              <span>Accessibility &bull; Ètò Ìrọ̀rùn</span>
+              <span>Accessibility & Easy Access</span>
             </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-amber-950">
                 Simple Mode: Easy, Stress-Free Banking for Everyone
               </h2>
-              <p className="text-sm text-amber-900/80 italic mt-0.5">
-                (Ètò Rọrùn: Bánkì láì sí wàhálà tàbí ìdàrúdàpọ̀)
+              <p className="text-sm text-amber-900/80 font-medium mt-0.5">
+                Clear instructions, large buttons, and assisted booking for stress-free bank visits.
               </p>
             </div>
             <p className="text-sm sm:text-base text-amber-900/90 leading-relaxed">
               Not everyone is comfortable with complicated smartphone applications. Q0 includes a dedicated 
-              <strong> Simple Mode</strong> featuring <strong>extra-large text, high-contrast buttons, English first with Yoruba assistance</strong>, 
+              <strong> Simple Mode</strong> featuring <strong>extra-large text, high-contrast buttons, simple instructions</strong>, 
               and an <strong>assisted-booking option</strong> so family members, relatives, or bank greeters can secure a ticket on behalf of seniors and non-smartphone users.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
@@ -333,7 +329,7 @@ export const LandingPage: React.FC = () => {
 
           <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-3">
             <div className="text-amber-800 font-bold text-xs uppercase tracking-wider">
-              Accessibility Highlights &bull; Àwọn Àǹfààní
+              Accessibility Highlights
             </div>
             <ul className="text-xs text-slate-700 space-y-2">
               <li className="flex items-start gap-2 font-medium">
@@ -346,7 +342,7 @@ export const LandingPage: React.FC = () => {
               </li>
               <li className="flex items-start gap-2 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></span>
-                <span>English first with Yoruba assistance for elders</span>
+                <span>Clear preparation checklist before travelling</span>
               </li>
               <li className="flex items-start gap-2 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></span>

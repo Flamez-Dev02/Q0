@@ -9,7 +9,7 @@ export const SimpleModePage: React.FC = () => {
         to="/"
         className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-blue-700 transition-colors"
       >
-        <ArrowLeft className="w-5 h-5 mr-1.5" /> Back to Standard View &bull; <span className="text-slate-500 italic ml-1">(Pada si Ojúlówó)</span>
+        <ArrowLeft className="w-5 h-5 mr-1.5" /> Back to Standard View
       </Link>
 
       <div className="bg-amber-50/90 rounded-3xl p-6 sm:p-10 border-2 border-amber-300 shadow-md space-y-6">
@@ -18,7 +18,7 @@ export const SimpleModePage: React.FC = () => {
             Simple Mode &bull; Easy & Assisted Access
           </div>
           <span className="text-xs font-semibold bg-white px-3 py-1 rounded-full border border-amber-300 text-amber-900">
-            English First + Yoruba Assistance
+            For Seniors, Pensioners & Assisted Banking
           </span>
         </div>
 
@@ -26,17 +26,13 @@ export const SimpleModePage: React.FC = () => {
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">
             Simple Banking, Zero Confusion
           </h1>
-          <p className="text-lg text-amber-950/80 italic mt-1">
-            Bánkì Lọ́fẹ̀ẹ́, Láì Sí Wàhálà
+          <p className="text-base sm:text-lg text-slate-700 mt-2 leading-relaxed">
+            Simple Mode provides extra-large buttons, fewer choices on each screen, and clear step-by-step guidance 
+            so anyone can book a queue ticket or check requirements without technology stress.
           </p>
         </div>
 
-        <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-          Simple Mode provides extra-large buttons, fewer choices on each screen, and bilingual guidance 
-          so anyone can book a queue ticket or check requirements without stress.
-        </p>
-
-        {/* Big accessible action buttons with English first and Yoruba translation underneath */}
+        {/* Big accessible action buttons */}
         <div className="space-y-4 pt-2">
           {/* Button 1 */}
           <button
@@ -47,11 +43,8 @@ export const SimpleModePage: React.FC = () => {
               <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
                 1. Collect or Replace ATM Debit Card
               </div>
-              <div className="text-sm sm:text-base font-semibold text-blue-700 italic">
-                (Gba Káàdì ATM tuntun tàbí èyí tó bàjẹ́)
-              </div>
-              <div className="text-xs sm:text-sm text-slate-600 pt-1">
-                Pick up a new or expired card &bull; Valid ID and phone number required
+              <div className="text-sm text-slate-600 pt-1">
+                Pick up a new or expired debit card &bull; Valid government ID and active phone number required
               </div>
             </div>
             <span className="text-3xl font-black text-blue-700 ml-4 group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -66,10 +59,7 @@ export const SimpleModePage: React.FC = () => {
               <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
                 2. Cash Deposit or Large Cash Withdrawal
               </div>
-              <div className="text-sm sm:text-base font-semibold text-blue-700 italic">
-                (Fífi owó pamọ́ tàbí gbígba owó lórí tábìlì)
-              </div>
-              <div className="text-xs sm:text-sm text-slate-600 pt-1">
+              <div className="text-sm text-slate-600 pt-1">
                 Over-the-counter teller service &bull; Account number and deposit slip
               </div>
             </div>
@@ -85,10 +75,7 @@ export const SimpleModePage: React.FC = () => {
               <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
                 3. Customer Care & Account Update
               </div>
-              <div className="text-sm sm:text-base font-semibold text-blue-700 italic">
-                (Àtúnṣe àkọọ́lẹ̀ àti ìrànwọ́ oníbàárà)
-              </div>
-              <div className="text-xs sm:text-sm text-slate-600 pt-1">
+              <div className="text-sm text-slate-600 pt-1">
                 Update phone number, NIN linking, or resolve POS transfer disputes
               </div>
             </div>
@@ -102,9 +89,6 @@ export const SimpleModePage: React.FC = () => {
             <HeartHandshake className="w-5 h-5 text-amber-700" />
             <span>Assisted Booking (Book for a Parent or Relative)</span>
           </div>
-          <p className="text-xs sm:text-sm font-semibold text-amber-900 italic">
-            (Ìfọwọ́sowọ́pọ̀ fún àwọn òbí tàbí ẹbí láti gba nọ́mbà)
-          </p>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1">
             Relatives, caregivers, or branch greeters can use this mode to generate a queue ticket for elderly family members, giving them the exact time to arrive without standing in crowded halls.
           </p>

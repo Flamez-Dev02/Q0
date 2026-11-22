@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/simple-mode" className="hover:text-blue-400 transition-colors">
-                  Simple Mode <span className="text-slate-500 italic">(Ètò Rọrùn)</span>
+                  Simple Mode (Accessibility View)
                 </Link>
               </li>
               <li>
