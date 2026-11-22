@@ -65,10 +65,10 @@ export const Navbar: React.FC = () => {
             <Link
               to="/simple-mode"
               className="ml-2 inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition-colors shadow-xs"
-              title="Accessible view with larger text and Yoruba/English assistance"
+              title="Accessible view with larger text and simplified assistance"
             >
               <span className="w-2 h-2 rounded-full bg-amber-500 mr-1.5 animate-ping"></span>
-              Simple Mode (Ètò Rọrùn)
+              Simple Mode (Easy Access)
             </Link>
           </div>
 

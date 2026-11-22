@@ -114,7 +114,7 @@ export const LandingPage: React.FC = () => {
               to="/simple-mode"
               className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 transition-all shadow-md text-sm sm:text-base"
             >
-              <span>Simple Mode (Ètò Rọrùn)</span>
+              <span>Simple Mode (Easy Access)</span>
               <Sparkles className="w-5 h-5 ml-2 text-amber-900" />
             </Link>
 
@@ -278,39 +278,51 @@ export const LandingPage: React.FC = () => {
               <span>♿ Accessibility & Inclusion</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-amber-950">
-              Simple Mode (Ètò Rọrùn) for Elderly & Assisted Users
+              Simple Mode: Easy, Stress-Free Banking for Everyone
             </h2>
             <p className="text-sm sm:text-base text-amber-900/90 leading-relaxed">
-              Not everyone is comfortable with complicated smartphone applications. Q0 includes an accessible 
-              mode featuring <strong>larger fonts, high-contrast buttons, simple English / Yoruba translations</strong>, 
-              and an <strong>assisted-booking pathway</strong> so family members or branch greeters can secure a ticket on someone else's behalf.
+              Not everyone is comfortable with complicated smartphone applications. Q0 includes a dedicated 
+              <strong> Simple Mode</strong> featuring <strong>extra-large text, high-contrast buttons, simple step-by-step instructions</strong>, 
+              and an <strong>assisted-booking option</strong> so family members, relatives, or bank greeters can secure a ticket on behalf of seniors and non-smartphone users.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Link
                 to="/simple-mode"
                 className="inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition-colors"
               >
-                Launch Simple Mode &rarr;
+                Try Simple Mode &rarr;
               </Link>
               <div className="flex items-center gap-2 text-xs text-amber-800 font-semibold">
                 <CheckCircle2 className="w-4 h-4 text-amber-700" />
-                <span>Large Buttons</span>
+                <span>Large Touch Targets</span>
                 <CheckCircle2 className="w-4 h-4 text-amber-700 ml-2" />
-                <span>Audio-Friendly Guidance</span>
+                <span>Zero Complex Menus</span>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-amber-200 shadow-sm text-center space-y-3">
-            <div className="text-amber-600 font-bold text-xs uppercase tracking-wider">
-              Bilingual Assistance Preview
+          <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-3">
+            <div className="text-amber-800 font-bold text-xs uppercase tracking-wider">
+              Accessibility Highlights
             </div>
-            <p className="text-lg font-bold text-slate-900">
-              &ldquo;Ẹ káàbọ̀ sí Queue-Zero. Yan ẹ̀ka bánkì rẹ kí o sì gba nọ́mbà ìdúró rẹ láì fi àkókò ṣòfò.&rdquo;
-            </p>
-            <p className="text-xs text-slate-500 italic">
-              (Welcome to Queue-Zero. Select your bank branch and take your waiting ticket without wasting time.)
-            </p>
+            <ul className="text-xs text-slate-700 space-y-2">
+              <li className="flex items-center gap-2 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span>Fewer choices per screen for easy decision-making</span>
+              </li>
+              <li className="flex items-center gap-2 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span>High color contrast for low-vision readability</span>
+              </li>
+              <li className="flex items-center gap-2 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span>Clear document checklist before leaving home</span>
+              </li>
+              <li className="flex items-center gap-2 font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span>Assisted booking for relatives and walk-ins</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
