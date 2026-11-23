@@ -14,7 +14,7 @@ export const SimpleModePage: React.FC = () => {
 
       <div className="bg-amber-50/90 rounded-3xl p-6 sm:p-10 border-2 border-amber-300 shadow-md space-y-6">
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <div className="inline-block px-4 py-1.5 bg-amber-200 text-amber-950 text-sm font-black rounded-full">
+          <div className="q0-badge q0-badge-amber">
             Simple Mode &bull; Easy & Assisted Access
           </div>
           <span className="text-xs font-semibold bg-white px-3 py-1 rounded-full border border-amber-300 text-amber-900">
@@ -32,18 +32,15 @@ export const SimpleModePage: React.FC = () => {
           </p>
         </div>
 
-        {/* Big accessible action buttons */}
+        {/* Big accessible action buttons using pure CSS .q0-simple-action-btn */}
         <div className="space-y-4 pt-2">
           {/* Button 1 */}
-          <button
-            type="button"
-            className="w-full text-left p-6 bg-white hover:bg-blue-50 rounded-2xl border-2 border-slate-300 hover:border-blue-600 transition-all shadow-sm flex items-center justify-between group"
-          >
-            <div className="space-y-1">
-              <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
+          <button type="button" className="q0-simple-action-btn group">
+            <div>
+              <div className="q0-simple-btn-title">
                 1. Collect or Replace ATM Debit Card
               </div>
-              <div className="text-sm text-slate-600 pt-1">
+              <div className="q0-simple-btn-desc">
                 Pick up a new or expired debit card &bull; Valid government ID and active phone number required
               </div>
             </div>
@@ -51,15 +48,12 @@ export const SimpleModePage: React.FC = () => {
           </button>
 
           {/* Button 2 */}
-          <button
-            type="button"
-            className="w-full text-left p-6 bg-white hover:bg-blue-50 rounded-2xl border-2 border-slate-300 hover:border-blue-600 transition-all shadow-sm flex items-center justify-between group"
-          >
-            <div className="space-y-1">
-              <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
+          <button type="button" className="q0-simple-action-btn group">
+            <div>
+              <div className="q0-simple-btn-title">
                 2. Cash Deposit or Large Cash Withdrawal
               </div>
-              <div className="text-sm text-slate-600 pt-1">
+              <div className="q0-simple-btn-desc">
                 Over-the-counter teller service &bull; Account number and deposit slip
               </div>
             </div>
@@ -67,15 +61,12 @@ export const SimpleModePage: React.FC = () => {
           </button>
 
           {/* Button 3 */}
-          <button
-            type="button"
-            className="w-full text-left p-6 bg-white hover:bg-blue-50 rounded-2xl border-2 border-slate-300 hover:border-blue-600 transition-all shadow-sm flex items-center justify-between group"
-          >
-            <div className="space-y-1">
-              <div className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-800 transition-colors">
+          <button type="button" className="q0-simple-action-btn group">
+            <div>
+              <div className="q0-simple-btn-title">
                 3. Customer Care & Account Update
               </div>
-              <div className="text-sm text-slate-600 pt-1">
+              <div className="q0-simple-btn-desc">
                 Update phone number, NIN linking, or resolve POS transfer disputes
               </div>
             </div>
@@ -84,7 +75,7 @@ export const SimpleModePage: React.FC = () => {
         </div>
 
         {/* Assisted Booking Callout */}
-        <div className="p-6 bg-white rounded-2xl border-2 border-amber-300 space-y-2">
+        <div className="q0-card border-2 border-amber-300 space-y-2">
           <div className="flex items-center gap-2 text-amber-950 font-bold text-base">
             <HeartHandshake className="w-5 h-5 text-amber-700" />
             <span>Assisted Booking (Book for a Parent or Relative)</span>
