@@ -1,3 +1,23 @@
+/**
+ * ============================================================================
+ * SERVICE SELECTION & DOCUMENT PREPARATION PAGE (PHASE 3)
+ * ============================================================================
+ * 
+ * BEGINNER GUIDE TO THIS COMPONENT:
+ * On this page, the customer:
+ * 1. Sees the branch they chose.
+ * 2. Clicks the banking service they need (e.g. "ATM Debit Card Replacement").
+ * 3. Checks off the required documents (ID, utility bill, passport photo) 
+ *    to make sure they don't waste transport.
+ * 4. Fills in their name and clicks "Join Virtual Queue & Get Ticket".
+ * 
+ * Key concepts used here:
+ * - "useSearchParams": Reads the URL (e.g. ?branchId=fb-dugbe) to know which branch was chosen.
+ * - "useState": Tracks the selected service, checked documents, and customer name.
+ * - "onSubmit": Handles form submission, validates inputs, and creates the ticket!
+ * ============================================================================
+ */
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { 
@@ -17,29 +37,31 @@ import { BankingService, BankBranch, QueueTicket } from '../types/queue';
 import { generateTicketNumber, calculateEstimatedWait, setActiveTicket } from '../utils/queueHelpers';
 
 export const ServiceSelectionPage: React.FC = () => {
+  // Reads query parameters from the browser address bar (e.g. ?branchId=fb-dugbe)
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const branchIdParam = searchParams.get('branchId');
 
-  // Selected branch state (defaults to first branch if none selected)
+  // STATE 1: Which branch is currently selected (defaults to First Bank if none passed)
   const [selectedBranch, setSelectedBranch] = useState<BankBranch>(() => {
     const found = SAMPLE_BRANCHES.find((b) => b.id === branchIdParam);
     return found || SAMPLE_BRANCHES[0];
   });
 
-  // Selected service state
+  // STATE 2: Which service is currently selected (defaults to Debit Cards)
   const [selectedService, setSelectedService] = useState<BankingService>(SAMPLE_SERVICES[0]);
 
-  // Document checklist confirmation state (track checked document IDs)
+  // STATE 3: Tracks which document checkboxes have been clicked
+  // Example object shape: { 'card-id': true, 'card-phone': true }
   const [confirmedDocs, setConfirmedDocs] = useState<Record<string, boolean>>({});
 
-  // Form inputs
-  const [customerName, setCustomerName] = useState('');
-  const [customerPhone, setCustomerPhone] = useState('');
-  const [formError, setFormError] = useState('');
+  // STATE 4: Form input values
+  const [customerName, setCustomerName] = useState<string>('');
+  const [customerPhone, setCustomerPhone] = useState<string>('');
+  const [formError, setFormError] = useState<string>('');
 
-  // Update selected branch if query param changes
+  // EFFECT 1: Update selected branch if the user clicks a different branch link
   useEffect(() => {
     if (branchIdParam) {
       const found = SAMPLE_BRANCHES.find((b) => b.id === branchIdParam);
@@ -47,41 +69,58 @@ export const ServiceSelectionPage: React.FC = () => {
     }
   }, [branchIdParam]);
 
-  // Reset document checklist when service changes
+  // EFFECT 2: Reset the document checklist when the customer changes the service
   useEffect(() => {
     setConfirmedDocs({});
     setFormError('');
   }, [selectedService]);
 
+  /**
+   * Toggles a document checkbox between true and false.
+   */
   const toggleDocConfirmation = (docId: string) => {
-    setConfirmedDocs((prev) => ({
-      ...prev,
-      [docId]: !prev[docId],
+    setConfirmedDocs((previousState) => ({
+      ...previousState,
+      [docId]: !previousState[docId],
     }));
   };
 
+  /**
+   * FORM SUBMISSION HANDLER:
+   * 1. Validates that the customer entered a name.
+   * 2. Checks that all mandatory documents were ticked.
+   * 3. Generates a unique ticket and saves it to LocalStorage.
+   * 4. Navigates to the /ticket page to view the live pass!
+   */
   const handleJoinQueue = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents old-school browser page reload on form submit
 
+    // Validation 1: Customer name is required
     if (!customerName.trim()) {
       setFormError('Please enter your full name or initials.');
       return;
     }
 
-    // Check if mandatory documents have been checked
+    // Validation 2: Ensure all mandatory documents have been checked
     const requiredDocs = selectedService.requiredDocuments.filter((d) => d.required);
-    const missingDocs = requiredDocs.some((d) => !confirmedDocs[d.id]);
+    const hasUncheckedDocs = requiredDocs.some((d) => !confirmedDocs[d.id]);
 
-    if (missingDocs) {
+    if (hasUncheckedDocs) {
       setFormError('Please verify that you have all required documents before taking a ticket.');
       return;
     }
 
-    // Generate unique demo ticket
+    // 1. Generate unique ticket number (e.g. "CD-42")
     const ticketNumber = generateTicketNumber(selectedService.prefix);
-    const position = selectedBranch.waitingCustomers + 1;
-    const estimatedWaitMinutes = calculateEstimatedWait(position, selectedService.estimatedServiceMinutes);
 
+    // 2. Calculate position and wait time based on branch queue
+    const position = selectedBranch.waitingCustomers + 1;
+    const estimatedWaitMinutes = calculateEstimatedWait(
+      position, 
+      selectedService.estimatedServiceMinutes
+    );
+
+    // 3. Create the ticket object
     const newTicket: QueueTicket = {
       id: `ticket-${Date.now()}`,
       ticketNumber,
@@ -99,19 +138,20 @@ export const ServiceSelectionPage: React.FC = () => {
       documentsConfirmed: true,
     };
 
-    // Save ticket to LocalStorage
+    // 4. Save to LocalStorage so the browser remembers it!
     setActiveTicket(newTicket);
 
-    // Route directly to Phase 4 Queue Tracker
+    // 5. Navigate immediately to the Queue Tracker page
     navigate('/ticket');
   };
 
+  // Helper counters for the checklist indicator
   const requiredCount = selectedService.requiredDocuments.filter((d) => d.required).length;
   const confirmedCount = selectedService.requiredDocuments.filter((d) => d.required && confirmedDocs[d.id]).length;
 
   return (
     <div className="space-y-8 py-4 sm:py-6">
-      {/* Top Navigation & Selected Branch Bar */}
+      {/* 1. Top Navigation Bar with Selected Branch Badge */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <Link
           to="/branches"
@@ -120,7 +160,7 @@ export const ServiceSelectionPage: React.FC = () => {
           <ArrowLeft className="w-4 h-4 mr-1.5" /> Back to Branch Finder
         </Link>
 
-        {/* Active Branch Display */}
+        {/* Selected Branch Indicator */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-xl text-xs">
           <Building2 className="w-4 h-4 text-blue-700" />
           <span className="text-slate-600">Selected Branch:</span>
@@ -134,9 +174,9 @@ export const ServiceSelectionPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Grid: Left = Service Picker, Right = Document Checklist & Booking Form */}
+      {/* 2. Main Two-Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Services Selection (7 cols on lg) */}
+        {/* Left Column: Service Picker (7 columns on large screens) */}
         <div className="lg:col-span-7 space-y-6">
           <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-bold border border-blue-200">
@@ -152,7 +192,7 @@ export const ServiceSelectionPage: React.FC = () => {
               load the required document checklist for that specific counter.
             </p>
 
-            {/* Services Options Cards */}
+            {/* List of service buttons */}
             <div className="space-y-3 pt-2">
               {SAMPLE_SERVICES.map((service) => {
                 const isSelected = selectedService.id === service.id;
@@ -184,6 +224,7 @@ export const ServiceSelectionPage: React.FC = () => {
                       </p>
                     </div>
 
+                    {/* Radio indicator circle */}
                     <div className="shrink-0 mt-1">
                       <div
                         className={`w-5 h-5 rounded-full border flex items-center justify-center ${
@@ -202,9 +243,9 @@ export const ServiceSelectionPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Document Checklist & Queue Booking (5 cols on lg) */}
+        {/* Right Column: Document Checklist & Customer Form (5 columns on large screens) */}
         <div className="lg:col-span-5 space-y-6">
-          {/* Document Checklist Card */}
+          {/* Document Preparation Checklist */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -263,13 +304,14 @@ export const ServiceSelectionPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Join Queue Form Card */}
+          {/* Form to enter name and generate ticket */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
             <h2 className="font-bold text-slate-900 text-base flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               <span>Step 2: Enter Details & Join Queue</span>
             </h2>
 
+            {/* Error Message Box if validation fails */}
             {formError && (
               <div className="p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded-xl flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
@@ -307,7 +349,7 @@ export const ServiceSelectionPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Zero Sensitive Data Disclaimer */}
+              {/* Security Trust Notice */}
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span>
@@ -315,7 +357,7 @@ export const ServiceSelectionPage: React.FC = () => {
                 </span>
               </div>
 
-              {/* Submit CTA */}
+              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm shadow-md hover:shadow-blue-200 transition-all flex items-center justify-center gap-2"

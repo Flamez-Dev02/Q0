@@ -1,3 +1,27 @@
+/**
+ * ============================================================================
+ * QUEUE TICKET TRACKER PAGE (PHASE 4: QUEUE SIMULATION)
+ * ============================================================================
+ * 
+ * BEGINNER GUIDE TO THIS COMPONENT:
+ * This page displays the customer's live digital queue pass.
+ * 
+ * Key concepts used here:
+ * 1. "useEffect": Runs automatically once when the page loads in the browser.
+ *    - It reads the active ticket saved in LocalStorage using getActiveTicket().
+ * 
+ * 2. Simulation Logic:
+ *    - In a real bank, a teller in the banking hall presses a physical button to call
+ *      the next number.
+ *    - In our demo prototype, we provide a button: "Simulate Teller Calling Next".
+ *      When you click it, it lowers your position from #3 -> #2 -> #1 -> "Now Serving at Counter 03"!
+ * 
+ * 3. Browser APIs:
+ *    - window.print() triggers the browser's physical print dialog to print a paper slip.
+ *    - window.confirm() shows a popup to ask "Are you sure?" before cancelling.
+ * ============================================================================
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -24,16 +48,25 @@ import {
 } from '../utils/queueHelpers';
 
 export const QueueTicketPage: React.FC = () => {
+  // STATE 1: Stores the active ticket object (or null if the user has no ticket)
   const [ticket, setTicket] = useState<QueueTicket | null>(null);
+
+  // STATE 2: Stores temporary notification alerts (e.g. "You are now #2 in line")
   const [notificationMsg, setNotificationMsg] = useState<string | null>(null);
 
-  // Load ticket from LocalStorage on mount
+  /**
+   * EFFECT: Runs ONCE when this page loads.
+   * Loads the saved ticket from the browser's LocalStorage memory.
+   */
   useEffect(() => {
-    const loaded = getActiveTicket();
-    setTicket(loaded);
+    const loadedTicket = getActiveTicket();
+    setTicket(loadedTicket);
   }, []);
 
-  // Handler to cancel active ticket
+  /**
+   * CANCEL TICKET:
+   * Asks for confirmation, clears the ticket from LocalStorage, and resets state.
+   */
   const handleCancelTicket = () => {
     if (window.confirm('Are you sure you want to cancel your queue ticket? This cannot be undone.')) {
       clearActiveTicket();
@@ -41,16 +74,27 @@ export const QueueTicketPage: React.FC = () => {
     }
   };
 
-  // Handler to print physical ticket slip (using clean print CSS)
+  /**
+   * PRINT TICKET SLIP:
+   * Uses browser's native window.print().
+   * Our CSS in index.css automatically hides the navigation bar and buttons during print!
+   */
   const handlePrint = () => {
     window.print();
   };
 
-  // Simulation: Advance queue (moves position closer to counter)
+  /**
+   * SIMULATION HANDLER:
+   * Simulates the teller calling the next customer.
+   * 1. Decrements position from #3 to #2, #2 to #1.
+   * 2. When position reaches 1, changes status to 'called' and assigns a counter (e.g. Counter 03)!
+   * 3. When called, clicking again marks the ticket as 'completed'.
+   */
   const handleSimulateAdvance = () => {
     if (!ticket) return;
 
     if (ticket.position > 1) {
+      // Step A: Customer moves closer to front of line
       const newPos = ticket.position - 1;
       const newWait = calculateEstimatedWait(newPos);
       const updated: QueueTicket = {
@@ -60,9 +104,10 @@ export const QueueTicketPage: React.FC = () => {
       };
       setTicket(updated);
       updateTicketStatusInQueue(ticket.id, 'waiting');
-      setNotificationMsg(`Queue moved! You are now #${newPos} in line (~${newWait} mins).`);
+      setNotificationMsg(`Queue moved! You are now #${newPos} in line (~${newWait} mins remaining).`);
     } else if (ticket.position === 1 && ticket.status === 'waiting') {
-      const counterNum = Math.floor(Math.random() * 4) + 1;
+      // Step B: Customer's number is called to the teller counter!
+      const counterNum = Math.floor(Math.random() * 4) + 1; // Random counter between 1 and 4
       const updated: QueueTicket = {
         ...ticket,
         position: 0,
@@ -74,6 +119,7 @@ export const QueueTicketPage: React.FC = () => {
       updateTicketStatusInQueue(ticket.id, 'called', counterNum);
       setNotificationMsg(`Your ticket is CALLED! Please proceed immediately to Counter 0${counterNum}.`);
     } else if (ticket.status === 'called') {
+      // Step C: Teller marks the transaction as completed
       const updated: QueueTicket = {
         ...ticket,
         status: 'completed',
@@ -84,7 +130,9 @@ export const QueueTicketPage: React.FC = () => {
     }
   };
 
-  // 1. EMPTY STATE (No ticket in LocalStorage)
+  // ==========================================================================
+  // VIEW 1: EMPTY STATE (Customer has not taken any ticket yet)
+  // ==========================================================================
   if (!ticket) {
     return (
       <div className="max-w-2xl mx-auto py-12 px-4 text-center space-y-6">
@@ -120,15 +168,17 @@ export const QueueTicketPage: React.FC = () => {
     );
   }
 
-  // 2. ACTIVE TICKET TRACKING SCREEN
+  // ==========================================================================
+  // VIEW 2: ACTIVE TICKET TRACKER SCREEN
+  // ==========================================================================
   const isCalled = ticket.status === 'called';
   const isCompleted = ticket.status === 'completed';
 
   return (
     <div className="max-w-4xl mx-auto py-4 sm:py-6 space-y-8">
-      {/* Simulation Banner Notification */}
+      {/* Simulation Notification Alert Toast */}
       {notificationMsg && (
-        <div className="p-4 bg-blue-50 border border-blue-200 text-blue-900 rounded-2xl flex items-center justify-between text-xs sm:text-sm animate-fade-in shadow-xs">
+        <div className="p-4 bg-blue-50 border border-blue-200 text-blue-900 rounded-2xl flex items-center justify-between text-xs sm:text-sm shadow-xs">
           <div className="flex items-center gap-2">
             <BellRing className="w-4 h-4 text-blue-600 shrink-0" />
             <span>{notificationMsg}</span>
@@ -143,7 +193,7 @@ export const QueueTicketPage: React.FC = () => {
         </div>
       )}
 
-      {/* Top back navigation */}
+      {/* Navigation & Phase Status Header */}
       <div className="flex items-center justify-between">
         <Link
           to="/"
@@ -156,9 +206,9 @@ export const QueueTicketPage: React.FC = () => {
         </span>
       </div>
 
-      {/* TICKET DISPLAY CONTAINER (Formatted for screen and clean physical printing) */}
+      {/* DIGITAL TICKET CARD CONTAINER */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden">
-        {/* Top Header of Ticket */}
+        {/* Ticket Header Bar (Color changes when called or completed) */}
         <div className={`p-6 sm:p-8 text-white ${
           isCalled
             ? 'bg-gradient-to-r from-amber-600 to-amber-700 animate-pulse'
@@ -180,7 +230,7 @@ export const QueueTicketPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Status Pill */}
+            {/* Status Badge */}
             <div className="self-start sm:self-auto">
               <span className="px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-white/20 backdrop-blur-sm border border-white/30 text-white">
                 {ticket.status === 'waiting' && '● Waiting in Line'}
@@ -191,7 +241,7 @@ export const QueueTicketPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Core Ticket Number & Metric Box */}
+        {/* Center Section: Big Ticket Number & Wait Time Calculations */}
         <div className="p-6 sm:p-10 text-center space-y-6">
           <div className="space-y-1">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
@@ -205,9 +255,10 @@ export const QueueTicketPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Real-time Position & Wait Estimation Bar */}
+          {/* Position in Line & Estimated Minutes */}
           {!isCompleted ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
+              {/* Position Box */}
               <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200">
                 <span className="text-xs text-blue-700 font-semibold uppercase tracking-wider">
                   Position in Line
@@ -216,10 +267,15 @@ export const QueueTicketPage: React.FC = () => {
                   {ticket.position > 0 ? `#${ticket.position}` : 'Called'}
                 </div>
                 <p className="text-[11px] text-blue-800 mt-0.5">
-                  {ticket.position > 1 ? `${ticket.position - 1} customers ahead of you` : isCalled ? 'Proceed to counter' : 'You are next!'}
+                  {ticket.position > 1 
+                    ? `${ticket.position - 1} customers ahead of you` 
+                    : isCalled 
+                    ? 'Proceed to counter' 
+                    : 'You are next!'}
                 </p>
               </div>
 
+              {/* Estimated Wait Box */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
                 <span className="text-xs text-slate-600 font-semibold uppercase tracking-wider">
                   Estimated Waiting Time
@@ -240,9 +296,9 @@ export const QueueTicketPage: React.FC = () => {
             </div>
           )}
 
-          {/* Called Counter Callout Banner */}
+          {/* Banner that pops up when customer is CALLED to counter */}
           {isCalled && (
-            <div className="p-5 rounded-2xl bg-amber-500 text-slate-950 font-bold max-w-md mx-auto shadow-lg space-y-1 animate-bounce">
+            <div className="p-5 rounded-2xl bg-amber-500 text-slate-950 font-bold max-w-md mx-auto shadow-lg space-y-1">
               <div className="text-xs uppercase tracking-wider">Attention Required</div>
               <div className="text-xl sm:text-2xl font-black">
                 PROCEED TO COUNTER 0{ticket.counterNumber || 2}
@@ -253,7 +309,7 @@ export const QueueTicketPage: React.FC = () => {
             </div>
           )}
 
-          {/* Customer Metadata Line */}
+          {/* Customer Metadata Footer Line */}
           <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
               <User className="w-3.5 h-3.5 text-slate-400" />
@@ -270,9 +326,9 @@ export const QueueTicketPage: React.FC = () => {
           </div>
         </div>
 
-        {/* BOTTOM ACTION BAR (Print, Cancel, and Simulation Buttons) */}
+        {/* BOTTOM ACTION BAR: Simulation Controls & Printing */}
         <div className="bg-slate-50 p-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Simulation Tools */}
+          {/* Simulation Advance Button */}
           <div className="flex items-center gap-2 w-full sm:w-auto">
             {!isCompleted && (
               <button
@@ -285,6 +341,8 @@ export const QueueTicketPage: React.FC = () => {
                 <span>Simulate Teller Calling Next</span>
               </button>
             )}
+
+            {/* Print Slip Button */}
             <button
               type="button"
               onClick={handlePrint}
@@ -296,7 +354,7 @@ export const QueueTicketPage: React.FC = () => {
             </button>
           </div>
 
-          {/* Cancel Ticket Option */}
+          {/* Cancel Ticket Button */}
           <div>
             <button
               type="button"
@@ -310,7 +368,7 @@ export const QueueTicketPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Helpful preparation guidance card */}
+      {/* Helpful Guidance Card */}
       <div className="bg-blue-50/60 p-6 rounded-2xl border border-blue-200 space-y-2 text-xs text-slate-700">
         <h3 className="font-bold text-blue-950 flex items-center gap-1.5 text-sm">
           <CheckCircle2 className="w-4 h-4 text-blue-600" />
