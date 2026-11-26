@@ -4,31 +4,60 @@
  */
 
 export type ServiceType = 
-  | 'cash-deposit'
-  | 'cash-withdrawal'
-  | 'customer-service'
-  | 'account-opening'
-  | 'foreign-exchange';
+  | 'card-services'
+  | 'cash-transactions'
+  | 'customer-support'
+  | 'account-update'
+  | 'account-opening';
 
 export type TicketStatus = 'waiting' | 'called' | 'in-service' | 'completed' | 'cancelled';
 
-export interface Ticket {
+export interface DocumentItem {
   id: string;
-  ticketNumber: string; // e.g. "C-104" or "W-042"
-  customerName: string;
-  phone?: string;
-  serviceType: ServiceType;
-  status: TicketStatus;
-  issuedAt: string;
-  estimatedWaitMinutes: number;
-  counterNumber?: number;
+  label: string;
+  required: boolean;
+  notes?: string;
+}
+
+export interface BankingService {
+  id: ServiceType;
+  title: string;
+  category: string;
+  description: string;
+  estimatedServiceMinutes: number;
+  prefix: string; // e.g. "CD" for cards, "CS" for cash
+  requiredDocuments: DocumentItem[];
 }
 
 export interface BankBranch {
   id: string;
-  name: string;
-  location: string; // e.g. "Dugbe, Ibadan" or "Bodija, Ibadan"
+  bankName: string;
+  branchName: string;
+  area: string; // e.g. "Dugbe", "Bodija", "Challenge", "Ring Road"
+  city: string; // "Ibadan"
   state: string; // "Oyo State"
+  address: string;
   activeCounters: number;
   waitingCustomers: number;
+  averageWaitMinutes: number;
+  status: 'Open' | 'Crowded' | 'Normal';
+  supportedServices: ServiceType[];
+}
+
+export interface QueueTicket {
+  id: string;
+  ticketNumber: string; // e.g. "QZ-024" or "FB-042"
+  customerName: string;
+  phone?: string;
+  branchId: string;
+  branchName: string;
+  bankName: string;
+  serviceId: ServiceType;
+  serviceName: string;
+  status: TicketStatus;
+  issuedAt: string; // ISO string
+  position: number;
+  estimatedWaitMinutes: number;
+  counterNumber?: number;
+  documentsConfirmed: boolean;
 }
