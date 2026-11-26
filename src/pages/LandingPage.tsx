@@ -110,7 +110,7 @@ export const LandingPage: React.FC = () => {
 
           {/* Action Buttons styled with CSS classes */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
-            <Link to="/branches" className="q0-btn-primary group">
+            <Link to="/branches" className="q0-hero-btn-primary group">
               <span>Explore Sample Bank Branches</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -135,7 +135,7 @@ export const LandingPage: React.FC = () => {
               {sampleBankBranches.map((item) => (
                 <span
                   key={item.branch}
-                  className="px-2.5 py-1 rounded-md bg-blue-950/80 text-xs text-blue-200 border border-blue-800/50 flex items-center gap-1.5"
+                  className="px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/15 text-xs text-sky-100 border border-white/15 backdrop-blur-sm flex items-center gap-1.5 transition-colors"
                 >
                   <strong className="text-white">{item.bank}:</strong> {item.branch}
                 </span>
@@ -205,9 +205,8 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 3. WHO Q0 HELPS (PERSONAS ACROSS NIGERIA) */}
-      <section className="bg-slate-100/70 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 rounded-3xl border border-slate-200">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="max-w-2xl space-y-2">
+      <section className="q0-soft-section space-y-8">
+        <div className="max-w-2xl space-y-2">
             <span className="q0-badge bg-white text-slate-700 border border-slate-200">
               User-Centred Design
             </span>
@@ -242,7 +241,6 @@ export const LandingPage: React.FC = () => {
               );
             })}
           </div>
-        </div>
       </section>
 
       {/* 4. HOW IT WORKS (CUSTOMER JOURNEY) */}
