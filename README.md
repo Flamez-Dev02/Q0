@@ -250,8 +250,8 @@ The application is deployed using Vercel connected to GitHub:
 
 - [x] Phase 1: Project Setup, Tooling & Architecture Baseline (Completed)
 - [x] Phase 2: Design System, Navigation, Landing Page & Simple Mode (Completed)
-- [ ] Phase 3: Sample Bank Branch Discovery & Service Preparation Guidance
-- [ ] Phase 4: Virtual Queue Simulation & LocalStorage Ticket Generation
+- [x] Phase 3: Sample Bank Branch Discovery & Service Preparation Guidance
+- [x] Phase 4: Virtual Queue Simulation & LocalStorage Ticket Generation
 - [ ] Phase 5: Complete Accessible Simple Mode with Assisted Booking Flow
 - [ ] Phase 6: Staff Teller Queue Dashboard (Call Next, Served, Skip, Recall)
 - [ ] Phase 7: Branch Queue Analytics and Statistics
